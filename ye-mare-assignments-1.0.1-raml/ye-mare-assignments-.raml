@@ -1,0 +1,33 @@
+#%RAML 1.0
+title: ye-mare-assignments 
+version: 1.0
+types:
+  user: !include data type/dataType.raml
+traits:
+  respomassage: !include trait/responces.raml
+securitySchemes:
+  basic: !include security schema/securityScheme.raml
+ 
+/users:
+  description: users account  
+  get:
+    securedBy: [basic]
+    headers:
+    queryParameters:
+      id:
+        type: integer
+        required: true
+        example: 1
+    description: return account information
+    responses:
+      200:
+        body:
+          application/json:
+            type: user
+            example: !include example/example.raml
+             
+    is:
+        respomassage
+        
+            
+          
